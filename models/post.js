@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { ObjectId } = Schema.Types;
 
 const postSchema = new Schema({
 	title: {
@@ -11,10 +12,16 @@ const postSchema = new Schema({
 	},
 	photo: {
 		type: String,
-		default: 'No Photo',
+		required: true,
 	},
+	likes: [
+		{
+			type: ObjectId,
+			ref: 'User',
+		},
+	],
 	postedBy: {
-		type: Schema.Types.ObjectId,
+		type: ObjectId,
 		ref: 'User',
 	},
 });
